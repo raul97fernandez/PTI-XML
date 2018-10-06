@@ -54,26 +54,6 @@ public class CarRental {
         Element carrentalElement = new Element("carrental");
         //create the document
         Document myDocument = new Document(carrentalElement);
-        //add an attribute to the root element
- 	//carrentalElement.setAttribute(new Attribute("vin", "123fhg5869705iop90"));
-        //add content
-        /*carrentalElement.addContent(new Comment("Description of a car rental"));
-
-	Element rental = new Element("rental");
-	rental.setAttribute(new Attribute("id", "1"));
-
-        //add some child elements
-        Element make = new Element("make");
-        make.addContent("Toyota");
-        rental.addContent(make);
-
-        //add some more elements
-        rental.addContent(new Element("model").addContent("Celica"));
-        rental.addContent(new Element("nofdays").addContent("3"));
-        rental.addContent(new Element("nofunits").addContent("1"));
-        rental.addContent(new Element("discount").addContent("15"));
-
-	carrentalElement.addContent(rental);*/
 
         return myDocument;
     }
@@ -199,7 +179,7 @@ public class CarRental {
             if(command.equals("reset")) outputDocumentToFile(createDocument());
             else if(command.equals("new")) new_element();
             else if(command.equals("list")) outputDocument(readDocument());
-            else if(command.equals("xlst")) outputDocumentToFile(createDocument());
+            else if(command.equals("xlst")) executeXSLT(readDocument());
             else if(command.equals("validate")) outputDocument(readDocument());
             else {
                 System.out.println(command + " is not a valid option.");
