@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<carrental><rental><make>Toyota</make><model>Yaris</model><nofdays>1</nofdays><nofunits>1</nofunits><discount>15</discount></rental></carrental>
+<carrental><rental><make>Toyota</make><model>Celica</model><nofdays>3</nofdays><nofunits>1</nofunits><discount>15</discount></rental><rental><make>Toyota</make><model>Yaris</model><nofdays>3</nofdays><nofunits>1</nofunits><discount>12</discount></rental></carrental>

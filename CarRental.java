@@ -137,6 +137,22 @@ public class CarRental {
         }
     }
 
+    public static void validate () {
+        try {
+            SAXBuilder builder = new SAXBuilder(XMLReaders.XSDVALIDATING);
+            Document anotherDocument = builder.build(new File("carrental.xml"));
+            System.out.println("Root: " + anotherDocument.getRootElement().getName());
+
+        } catch (JDOMException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     /**
      * This method takes a JDOM document in memory, an XSLT file at example.xslt,
      * and outputs the results to stdout.
@@ -149,7 +165,7 @@ public class CarRental {
             org.jdom2.output.DOMOutputter outputter = new org.jdom2.output.DOMOutputter();
             org.w3c.dom.Document domDocument = outputter.output(myDocument);
             javax.xml.transform.Source xmlSource = new javax.xml.transform.dom.DOMSource(domDocument);
-            StreamSource xsltSource = new StreamSource(new FileInputStream("example.xslt"));
+            StreamSource xsltSource = new StreamSource(new FileInputStream("carrental.xslt"));
 			//Make the output result for the finished document
             StreamResult xmlResult = new StreamResult(System.out);
 			//Get a XSLT transformer
@@ -179,7 +195,7 @@ public class CarRental {
             if(command.equals("reset")) outputDocumentToFile(createDocument());
             else if(command.equals("new")) new_element();
             else if(command.equals("list")) outputDocument(readDocument());
-            else if(command.equals("xlst")) executeXSLT(readDocument());
+            else if(command.equals("xslt")) executeXSLT(readDocument());
             else if(command.equals("validate")) outputDocument(readDocument());
             else {
                 System.out.println(command + " is not a valid option.");
@@ -198,7 +214,7 @@ public class CarRental {
         System.out.println("  reset - create a new document in memory and print it to the console");
         System.out.println("  new - create a new document and show its child element");
         System.out.println("  list - create a new document and remove its child element");
-        System.out.println("  xlst  - create a new document and save it to myFile.xml");
+        System.out.println("  xslt  - create a new document and save it to myFile.xml");
         System.out.println("  validate   - read and parse a document from example.xml");
     }
 
