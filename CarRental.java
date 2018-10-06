@@ -33,7 +33,6 @@ public class CarRental {
         try {
             SAXBuilder builder = new SAXBuilder();
 			Document anotherDocument = builder.build(new File("CarRental.xml"));
-			outputDocument(anotherDocument);
 			return anotherDocument;
         } catch(JDOMException e) {
             e.printStackTrace();
@@ -197,9 +196,9 @@ public class CarRental {
     public static void main(String argv[]) {
         if(argv.length == 1) {
             String command = argv[0];
-            if(command.equals("reset")) reset();
+            if(command.equals("reset")) outputDocumentToFile(createDocument());
             else if(command.equals("new")) new_element();
-            else if(command.equals("list")) outputDocument(createDocument());
+            else if(command.equals("list")) outputDocument(readDocument());
             else if(command.equals("xlst")) outputDocumentToFile(createDocument());
             else if(command.equals("validate")) outputDocument(readDocument());
             else {
@@ -223,11 +222,6 @@ public class CarRental {
         System.out.println("  validate   - read and parse a document from example.xml");
     }
 
-	public static void reset(){
-		outputDocumentToFile(createDocument());
-		//id = 0;
-	}
-
 	public static void new_element(){
 		Document doc = readDocument();
 		Element root = doc.getRootElement();
@@ -237,11 +231,6 @@ public class CarRental {
 		outputDocumentToFile(doc);
 		outputDocument(doc);
 		//++id;
-	}
-
-	public static void list_elements() {
-		Document doc = readDocument(); //no acaba de funcionar be el readDocument
-		outputDocument(doc);
 	}
 	
 	public static Element askData() {
